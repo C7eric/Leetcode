@@ -38,7 +38,7 @@
 
 
 
-#### 题解代码
+#### 位运算
 
 ```java
 class Solution {
@@ -56,7 +56,7 @@ class Solution {
 
 
 
-#### 异或的性质
+##### 异或的性质
 
 - 任何数和 0做异或运算，结果仍然是原来的数，即 a ⊕ 0=a。
 
@@ -64,10 +64,6 @@ class Solution {
 - 异或运算满足交换律和结合律，即  a ⊕ b ⊕ a = b ⊕ a ⊕ a = b ⊕ ( a ⊕ a ) = b ⊕ 0 = b
 
 
-
-### 其它解法
-
----
 
 如果不考虑时间复杂度和空间复杂度，其他解法思路如下
 
@@ -139,3 +135,117 @@ class Solution {
 
 执行用时：13 ms         内存消耗：42.5 MB
 
+
+
+
+
+
+
+## [169. 多数元素](https://leetcode.cn/problems/majority-element/)
+
+难度    简单
+
+给定一个大小为 `n` 的数组 `nums` ，返回其中的多数元素。多数元素是指在数组中出现次数 **大于** `⌊ n/2 ⌋` 的元素。
+
+你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+
+ 
+
+**示例 1：**
+
+```
+输入：nums = [3,2,3]
+输出：3
+```
+
+**示例 2：**
+
+```
+输入：nums = [2,2,1,1,1,2,2]
+输出：2
+```
+
+ 
+
+**提示：**
+
+- `n == nums.length`
+- `1 <= n <= 5 * 104`
+- `-109 <= nums[i] <= 109`
+
+ 
+
+**进阶：**尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。
+
+
+
+### 题解
+
+---
+
+最简单的暴力方法是，枚举数组中的每个元素，再遍历一遍数组统计其出现次数。该方法的时间复杂度是 O(n^2)O(n2)，会超出时间限制，因此我们需要找出时间复杂度小于 O(n^2)O(n）的优秀做法。
+
+
+
+#### 题解代码
+
+##### 哈希表
+
+我们使用哈希映射（HashMap）来存储每个元素以及出现的次数。对于哈希映射中的每个键值对，键表示一个元素，值表示该元素出现的次数。
+
+我们用一个循环遍历数组 nums 并将数组中的每个元素加入哈希映射中。在这之后，我们遍历哈希映射中的所有键值对，返回值最大的键。我们同样也可以在遍历数组 nums 时候使用打擂台的方法，维护最大的值，这样省去了最后对哈希映射的遍历。
+
+
+
+###### 题解代码
+
+```java
+class Solution {
+    private HashMap<Integer,Integer> countsNum(int[] nums){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int num : nums){
+            if(!map.containsKey(num)){
+                map.put(num,1);
+            } else {
+                map.put(num,map.get(num) + 1);
+            }
+        }
+        return map;
+    }
+    public int majorityElement(int[] nums) {
+        Map<Integer,Integer> map = countsNum(nums);
+        Map.Entry<Integer,Integer> majorityEntry = null;
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+            if(majorityEntry == null || entry.getValue() > majorityEntry.getValue()){
+                majorityEntry = entry;
+            }
+        }
+        return majorityEntry.getKey();
+    }
+}
+```
+
+执行用时：13 ms      内存消耗：46.5 MB
+
+
+
+##### 排序
+
+如果将数组 nums 中的所有元素按照单调递增或单调递减的顺序排序，那么下标为 n / 2 的元素（下标从 0 开始）一定是众数。
+
+对于每种情况，数组下面的线表示如果众数是数组中的最小值时覆盖的下标，数组下面的线表示如果众数是数组中的最大值时覆盖的下标。对于其他的情况，这条线会在这两种极端情况的中间。对于这两种极端情况，它们会在下标为 n \ 2 的地方有重叠。因此，无论众数是多少，返回  n \ 2 下标对应的值都是正确的。
+
+
+
+###### 题解代码
+
+```java
+class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
+    }
+}
+```
+
+执行用时： 2 ms     内存消耗：44.9 MB  
