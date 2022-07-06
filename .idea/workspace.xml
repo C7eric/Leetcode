@@ -4,33 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="632d6ba3-73c3-4aa5-8d3e-e6a5a5830f7f" name="变更" comment="142 环形链表 ||">
-      <change afterPath="$PROJECT_DIR$/src/Offer055_IsBalanced.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Offer068_LowestCommonAncesotor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="632d6ba3-73c3-4aa5-8d3e-e6a5a5830f7f" name="变更" comment="leetcode 刷题笔记">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/118_generate.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/118_generate.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/121_maxProfit.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/121_maxProfit.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/136_singleNumber.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/136_singleNumber.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/141_hasCycle.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/141_hasCycle.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/169_majorityElements.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/169_majorityElements.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_twoSum.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/1_twoSum.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/203_removeElements.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/203_removeElements.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/206_reserveList.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/206_reserveList.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20_isValid.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/20_isValid.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/217_containDuplicate.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/217_containDuplicate.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/21_mergeTwoLists.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/21_mergeTwoLists.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/232_stackForQueue.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/232_stackForQueue.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2_maxSubArray.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/2_maxSubArray.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/350_intersect.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/350_intersect.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/387_firstUnipChar.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/387_firstUnipChar.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/53_twoSum.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/53_twoSum.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/566_matrixReshape.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/566_matrixReshape.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/73_setZero.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/73_setZero.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/83_deleteDuplicates.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/83_deleteDuplicates.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/88_merge.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/88_merge.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code142_DetectCycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code142_DetectCycle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Solution383.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Solution383.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +20,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="CSQ &lt;ericcsq0611@outlook.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -71,12 +51,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="17" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/C77eric_Leetcode" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="leetcode.id" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\C\Leetcode\C77eric_Leetcode" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -88,7 +73,12 @@
       <updated>1651660623179</updated>
       <workItem from="1654442140701" duration="1043000" />
       <workItem from="1654489634168" duration="259000" />
-      <workItem from="1654532705256" duration="301000" />
+      <workItem from="1654532705256" duration="564000" />
+      <workItem from="1654573967239" duration="132000" />
+      <workItem from="1654588736780" duration="235000" />
+      <workItem from="1655215873930" duration="240000" />
+      <workItem from="1655307877426" duration="21000" />
+      <workItem from="1655725285017" duration="111000" />
     </task>
     <task id="LOCAL-00001" summary="142 环形链表 ||">
       <created>1654442485985</created>
@@ -97,7 +87,42 @@
       <option name="project" value="LOCAL" />
       <updated>1654442485985</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="changes">
+      <created>1654533076661</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654533076661</updated>
+    </task>
+    <task id="LOCAL-00003" summary="剑指Offer 68 - II.二叉树的公共祖先">
+      <created>1654533189899</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1654533189899</updated>
+    </task>
+    <task id="LOCAL-00004" summary="剑指Offer 55 - II.平衡二叉树">
+      <created>1654533211494</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1654533211494</updated>
+    </task>
+    <task id="LOCAL-00005" summary=" 102 - 二叉树的层序遍历">
+      <created>1654588958564</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1654588958564</updated>
+    </task>
+    <task id="LOCAL-00006" summary="leetcode 刷题笔记">
+      <created>1655215991715</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1655215991715</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,8 +140,14 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="142 环形链表 ||" />
-    <option name="LAST_COMMIT_MESSAGE" value="142 环形链表 ||" />
+    <MESSAGE value="changes" />
+    <MESSAGE value="剑指Offer 68 - II.二叉树的公共祖先" />
+    <MESSAGE value="剑指Offer 55 - II.平衡二叉树" />
+    <MESSAGE value=" 102 - 二叉树的层序遍历" />
+    <MESSAGE value="leetcode 刷题笔记" />
+    <option name="LAST_COMMIT_MESSAGE" value="leetcode 刷题笔记" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
