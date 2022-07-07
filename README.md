@@ -307,7 +307,7 @@ myHashMap.get(2);    // 返回 -1（未找到），myHashMap 现在为 [[1,1]]
 
 ##### 链地址法
 
-底层用数组 + 链表 实现维护
+底层用数组 + 链表 实现维护 HashMap
 
 ```java
 class MyHashMap {
@@ -410,3 +410,154 @@ class MyHashMap {
 使用质数做了模的除数，自然存储空间的大小也用质数了，因为模完之后，数据是在[0-所选质数)之间。
 
 当然也可以使用其他的质数，保证大小合适就行。
+
+
+
+## [56. 合并区间](https://leetcode.cn/problems/merge-intervals/)
+
+难度  中等
+
+以数组 `intervals` 表示若干个区间的集合，其中单个区间为 `intervals[i] = [starti, endi]` 。请你合并所有重叠的区间，并返回 *一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间* 。
+
+ 
+
+**示例 1：**
+
+```
+输入：intervals = [[1,3],[2,6],[8,10],[15,18]]
+输出：[[1,6],[8,10],[15,18]]
+解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
+```
+
+**示例 2：**
+
+```
+输入：intervals = [[1,4],[4,5]]
+输出：[[1,5]]
+解释：区间 [1,4] 和 [4,5] 可被视为重叠区间。
+```
+
+ 
+
+**提示：**
+
+- `1 <= intervals.length <= 104`
+- `intervals[i].length == 2`
+- `0 <= starti <= endi <= 104`
+
+
+
+### 题解
+
+---
+
+#### 题解代码
+
+##### 排序
+
+如果我们按照区间的左端点排序，那么在排完序的列表中，可以合并的区间一定是连续的。
+
+```java
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if(intervals.length == 0){
+            return new int[0][2];
+        }
+
+        Arrays.sort(intervals,new Comparator<int[]>(){
+            public int compare(int[] interval1,int[] interval2){
+                return interval1[0] - interval2[0];
+            }
+        });
+        List<int[]> merged = new ArrayList<>();
+        for(int i = 0;i < intervals.length;++i){
+            int L = intervals[i][0];
+            int R = intervals[i][1];
+            if(merged.size() == 0 || merged.get(merged.size() - 1)[1] < L){
+                merged.add(new int[]{L,R});
+            } else {
+                merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1],R);
+            }
+        }
+        return merged.toArray(new int[merged.size()][0]);
+    }
+}
+```
+
+
+
+`merged.size() == 0 || merged.get(merged.size() - 1)[1] < L`
+
+当 merged size == 0 时，或者 前一区间的 R 小于当前 L 值时，区间之间无交集。直接 将区间 {L，R}`add` 到 merged 中   --- `new int[]{L,R}`
+
+反之，区间有交集，将其合并
+
+重新确定 区间的 右边界 R `merged.get(merged.size() - 1)[1]`   比较 前一个区间的 R 与 现区间 R 的大小，取大者为新区间 右边界 `Math.max(merged.get(merged.size() - 1)[1],R)`
+
+
+
+
+
+## [75. 颜色分类](https://leetcode.cn/problems/sort-colors/)
+
+难度  中等
+
+给定一个包含红色、白色和蓝色、共 `n` 个元素的数组 `nums` ，**[原地](https://baike.baidu.com/item/原地算法)**对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。
+
+我们使用整数 `0`、 `1` 和 `2` 分别表示红色、白色和蓝色。
+
+
+
+必须在不使用库的sort函数的情况下解决这个问题。
+
+ 
+
+**示例 1：**
+
+```
+输入：nums = [2,0,2,1,1,0]
+输出：[0,0,1,1,2,2]
+```
+
+**示例 2：**
+
+```
+输入：nums = [2,0,1]
+输出：[0,1,2]
+```
+
+ 
+
+**提示：**
+
+- `n == nums.length`
+- `1 <= n <= 300`
+- `nums[i]` 为 `0`、`1` 或 `2`
+
+ 
+
+**进阶：**
+
+- 你可以不使用代码库中的排序函数来解决这道题吗？
+- 你能想出一个仅使用常数空间的一趟扫描算法吗？
+
+
+
+
+
+### 题解
+
+---
+
+#### 题解代码
+
+##### 快速排序
+
+将问题转化为在 0，1，2 之间排序，且仅使用常数空间完成一趟扫描
+
+将 1 视为比较值，设置 less,more 边界，通过 一个 partition ，将 0，1，2 排序完成
+
+```java
+
+```
+
