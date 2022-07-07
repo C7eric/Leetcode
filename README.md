@@ -399,6 +399,10 @@ class MyHashMap {
  */
 ```
 
+执行用时:17 ms   内存消耗：48.1 MB
+
+
+
 
 
 `private static final BASE = 769;` 
@@ -484,6 +488,8 @@ class Solution {
 }
 ```
 
+执行用时：7 ms   内存消耗：46.6 MB
+
 
 
 `merged.size() == 0 || merged.get(merged.size() - 1)[1] < L`
@@ -555,9 +561,58 @@ class Solution {
 
 将问题转化为在 0，1，2 之间排序，且仅使用常数空间完成一趟扫描
 
-将 1 视为比较值，设置 less,more 边界，通过 一个 partition ，将 0，1，2 排序完成
+将 1 视为比较值 `compareNum`，设置 less,more 边界，通过 一个 partition ，将 0，1，2 排序完成
 
 ```java
+public class SortColors {
+    public void sortColors(int[] nums) {
+        if(nums.length == 0)    return;
 
+        int n = nums.length;
+        int compareNum = 1;
+        int less = 0 - 1;
+        int more = n;
+        int index = 0;
+        while(index < more){
+            if (nums[index] < compareNum){
+                swap(nums,++less,index++);
+            } else if(nums[index] > compareNum){
+                swap(nums,--more,index);
+            } else {
+                index++;
+            }
+        }
+    }
+
+    public void swap(int[] nums, int i,int j){
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+}
+```
+
+执行用时: 0 ms    内存消耗：40.0 MB
+
+
+
+###### 广泛 partition 函数
+
+```java
+public static int[] partition(int[] arr,int L,int R){
+     int less = L - 1;  // 左边界
+     int more = R;  // 右边界
+     while(L < more){   // L 表示当前数的位置 arr[R] -> 划分值
+         if(arr[L] < arr[R]){  // 当前数 < 划分值
+             swap(arr,++less,L++);
+         } else if(arr[L] > arr[R]){  // 当前数 > 划分值
+             swap(arr,--more,L);
+         } else {
+             L++;
+         }
+     }
+     swap(arr,more,R);
+     return new int[]{less + 1,more};
+ }
 ```
 
