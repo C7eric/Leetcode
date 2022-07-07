@@ -249,3 +249,164 @@ class Solution {
 ```
 
 执行用时： 2 ms     内存消耗：44.9 MB  
+
+
+
+
+
+## [706. 设计哈希映射](https://leetcode.cn/problems/design-hashmap/)
+
+难度  简单
+
+不使用任何内建的哈希表库设计一个哈希映射（HashMap）。
+
+实现 `MyHashMap` 类：
+
+- `MyHashMap()` 用空映射初始化对象
+- `void put(int key, int value)` 向 HashMap 插入一个键值对 `(key, value)` 。如果 `key` 已经存在于映射中，则更新其对应的值 `value` 。
+- `int get(int key)` 返回特定的 `key` 所映射的 `value` ；如果映射中不包含 `key` 的映射，返回 `-1` 。
+- `void remove(key)` 如果映射中存在 `key` 的映射，则移除 `key` 和它所对应的 `value` 。
+
+ 
+
+**示例：**
+
+```
+输入：
+["MyHashMap", "put", "put", "get", "get", "put", "get", "remove", "get"]
+[[], [1, 1], [2, 2], [1], [3], [2, 1], [2], [2], [2]]
+输出：
+[null, null, null, 1, -1, null, 1, null, -1]
+
+解释：
+MyHashMap myHashMap = new MyHashMap();
+myHashMap.put(1, 1); // myHashMap 现在为 [[1,1]]
+myHashMap.put(2, 2); // myHashMap 现在为 [[1,1], [2,2]]
+myHashMap.get(1);    // 返回 1 ，myHashMap 现在为 [[1,1], [2,2]]
+myHashMap.get(3);    // 返回 -1（未找到），myHashMap 现在为 [[1,1], [2,2]]
+myHashMap.put(2, 1); // myHashMap 现在为 [[1,1], [2,1]]（更新已有的值）
+myHashMap.get(2);    // 返回 1 ，myHashMap 现在为 [[1,1], [2,1]]
+myHashMap.remove(2); // 删除键为 2 的数据，myHashMap 现在为 [[1,1]]
+myHashMap.get(2);    // 返回 -1（未找到），myHashMap 现在为 [[1,1]]
+```
+
+ 
+
+**提示：**
+
+- `0 <= key, value <= 106`
+- 最多调用 `104` 次 `put`、`get` 和 `remove` 方法
+
+
+
+### 题解
+
+---
+
+#### 题解代码
+
+##### 链地址法
+
+底层用数组 + 链表 实现维护
+
+```java
+class MyHashMap {
+
+    public class Pair{
+        private int key;
+        private int value;
+
+        public Pair(int key,int value){
+            this.key = key;
+            this.value = value;
+        }
+
+        public void setKey(int key){
+            this.key = key;
+        }
+        
+        public int getKey(){
+            return key;
+        }
+
+        public void setValue(int value){
+            this.value = value;
+        }
+
+        public int getValue(){
+            return value;
+        }
+    }
+
+    private static final int BASE = 769;
+    private LinkedList[] data;
+
+    public MyHashMap() {
+        data = new LinkedList[BASE];
+        for(int i = 0;i < BASE;++i){
+            data[i] = new LinkedList<Pair>();
+        }
+    }
+    
+    public void put(int key, int value) {
+        int h = hash(key);
+        Iterator<Pair> iterator = data[h].iterator();
+        while(iterator.hasNext()){
+            Pair pair = iterator.next();
+            if(pair.getKey() == key){
+                pair.setValue(value);
+                return;
+            }
+        }
+        data[h].offerLast(new Pair(key,value));
+    }
+    
+    public int get(int key) {
+        int h = hash(key);
+        Iterator<Pair> iterator = data[h].iterator();
+        while(iterator.hasNext()){
+            Pair pair =  iterator.next();
+            if(pair.getKey() == key){
+                return pair.value;
+            }
+        }
+        return -1;
+    }
+    
+    public void remove(int key) {
+        int h = hash(key);
+        Iterator<Pair> iterator = data[h].iterator();
+        while(iterator.hasNext()){
+            Pair pair = iterator.next();
+            if(pair.getKey() == key){
+                data[h].remove(pair);   
+                return;
+            }
+        }
+    }
+
+    public int hash(int key){
+        return key % BASE;
+    }
+}
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap obj = new MyHashMap();
+ * obj.put(key,value);
+ * int param_2 = obj.get(key);
+ * obj.remove(key);
+ */
+```
+
+
+
+`private static final BASE = 769;` 
+
+**为什么 BASE 的值为 769**
+
+因为769是质数。简单的来说，使用质数就是为了减少冲突。 哈希表的大小取决于一组质数，原因是在hash函数中，要用这些质数来做模运算(%)。而分析发现，如果不是用质数来做模运算的话，很多生活中的数据分布，会集中在某些点上，从而导致冲突率增加。所以这里最后采用了质数做模的除数。
+
+使用质数做了模的除数，自然存储空间的大小也用质数了，因为模完之后，数据是在[0-所选质数)之间。
+
+当然也可以使用其他的质数，保证大小合适就行。
