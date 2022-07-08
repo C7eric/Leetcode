@@ -709,3 +709,87 @@ class Solution {
 
 每个元素等于上一行左右两个数字之和
 
+
+
+
+
+## [59. 螺旋矩阵 II](https://leetcode.cn/problems/spiral-matrix-ii/)
+
+难度中等755收藏分享切换为英文接收动态反馈
+
+给你一个正整数 `n` ，生成一个包含 `1` 到 `n2` 所有元素，且元素按顺时针顺序螺旋排列的 `n x n` 正方形矩阵 `matrix` 。
+
+ 
+
+**示例 1：**
+
+![img](https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg)
+
+```
+输入：n = 3
+输出：[[1,2,3],[8,9,4],[7,6,5]]
+```
+
+**示例 2：**
+
+```
+输入：n = 1
+输出：[[1]]
+```
+
+ 
+
+**提示：**
+
+- `1 <= n <= 20`
+
+
+
+### 题解
+
+---
+
+#### 模拟
+
+##### 心路历程
+
+按照矩阵旋转方向，每当到达边界时，就按照旋转方法旋转矩阵
+
+
+
+##### 代码
+
+```java
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int curNum = 1;
+        int maxNum = n * n;
+        int[][] matrix = new int[n][n];
+        int row = 0,column = 0;
+        int[][] directions = {{0,1},{1,0},{0,-1},{-1,0}};
+        int directionIndex = 0;
+        while(curNum <= maxNum){
+            matrix[row][column] = curNum;
+            curNum++;
+            int nextRow = row + directions[directionIndex][0],nextColumn = column + directions[directionIndex][1];
+            if(nextRow < 0 || nextRow >= n || nextColumn < 0 || nextColumn >= n || matrix[nextRow][nextColumn] != 0){
+                directionIndex = (directionIndex + 1) % 4;
+            }
+            row = row + directions[directionIndex][0];
+            column = column + directions[directionIndex][1];
+        }
+        return matrix;
+    }
+}
+```
+
+执行用时：0 ms  内存消耗：39.1 MB
+
+
+
+ `int[][] directions = {{0,1},{1,0},{0,-1},{-1,0}};`  方向 ： 右下左上
+
+ `int nextRow = row + directions[directionIndex][0],nextColumn = column + directions[directionIndex][1]; ` 定义 nextRow / Column 判断是否越界，若越界，则顺时针旋转至下一个方向  `direcitonIndex = (dierctionIndex + 1) % 4`  
+
+ `row = row + directions[directionIndex][0];
+ column = column + directions[directionIndex][1];` 重新赋值给 row , column
