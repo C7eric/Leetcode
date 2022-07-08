@@ -616,3 +616,96 @@ public static int[] partition(int[] arr,int L,int R){
  }
 ```
 
+
+
+
+
+## [119. 杨辉三角 II](https://leetcode.cn/problems/pascals-triangle-ii/)
+
+难度简单409收藏分享切换为英文接收动态反馈
+
+给定一个非负索引 `rowIndex`，返回「杨辉三角」的第 `rowIndex` 行。
+
+在「杨辉三角」中，每个数是它左上方和右上方的数的和。
+
+![img](https://pic.leetcode-cn.com/1626927345-DZmfxB-PascalTriangleAnimated2.gif)
+
+ 
+
+**示例 1:**
+
+```
+输入: rowIndex = 3
+输出: [1,3,3,1]
+```
+
+**示例 2:**
+
+```
+输入: rowIndex = 0
+输出: [1]
+```
+
+**示例 3:**
+
+```
+输入: rowIndex = 1
+输出: [1,1]
+```
+
+ 
+
+**提示:**
+
+- `0 <= rowIndex <= 33`
+
+ 
+
+**进阶：**
+
+你可以优化你的算法到 `*O*(*rowIndex*)` 空间复杂度吗？
+
+
+
+### 题解
+
+---
+
+#### 递推
+
+##### 心路历程
+
+由杨辉三角性质可知，每个数字等于上一行的左右两个数字之和，可用此性质写出整个杨辉三角。即第 n 行的第 i 个数等于第 n−1 行的第 i−1 个数和第 i 个数之和。
+
+定义 `List<List<Integer>> list` 作为 `@return ` ,利用循环将每一层 的元素 `add`  进 tmp，外循环将 tmp `add` 进 res
+
+##### 代码
+
+```java
+class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        for(int i = 0;i <= rowIndex;++i){
+            List<Integer> tmp = new ArrayList<>();
+            for(int j = 0;j <= i;++j){
+                if(j == 0 || j == i){
+                    tmp.add(1);
+                } else {
+                    tmp.add(res.get(i - 1).get(j - 1) + res.get(i - 1).get(j));
+                }
+            }
+            res.add(tmp);
+        }
+        return res.get(rowIndex);
+    }
+}
+```
+
+执行用时： 1 ms  内存消耗：39.2 MB
+
+
+
+`tmp.add(res.get(i - 1).get(j) + res.get(i - 1).get(j - 1))`
+
+每个元素等于上一行左右两个数字之和
+
