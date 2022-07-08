@@ -715,7 +715,7 @@ class Solution {
 
 ## [59. 螺旋矩阵 II](https://leetcode.cn/problems/spiral-matrix-ii/)
 
-难度中等755收藏分享切换为英文接收动态反馈
+难度  中等
 
 给你一个正整数 `n` ，生成一个包含 `1` 到 `n2` 所有元素，且元素按顺时针顺序螺旋排列的 `n x n` 正方形矩阵 `matrix` 。
 
@@ -793,3 +793,89 @@ class Solution {
 
  `row = row + directions[directionIndex][0];
  column = column + directions[directionIndex][1];` 重新赋值给 row , column
+
+
+
+
+
+## [48. 旋转图像](https://leetcode.cn/problems/rotate-image/)
+
+难度  中等
+
+给定一个 *n* × *n* 的二维矩阵 `matrix` 表示一个图像。请你将图像顺时针旋转 90 度。
+
+你必须在**[ 原地](https://baike.baidu.com/item/原地算法)** 旋转图像，这意味着你需要直接修改输入的二维矩阵。**请不要** 使用另一个矩阵来旋转图像。
+
+ 
+
+**示例 1：**
+
+![img](https://assets.leetcode.com/uploads/2020/08/28/mat1.jpg)
+
+```
+输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[[7,4,1],[8,5,2],[9,6,3]]
+```
+
+**示例 2：**
+
+![img](https://assets.leetcode.com/uploads/2020/08/28/mat2.jpg)
+
+```
+输入：matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+输出：[[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+```
+
+ 
+
+**提示：**
+
+- `n == matrix.length == matrix[i].length`
+- `1 <= n <= 20`
+- `-1000 <= matrix[i][j] <= 1000`
+
+ 
+
+### 题解
+
+---
+
+#### 使用辅助数组
+
+##### 心路历程
+
+借助辅助数组将旋转后的图像元素各位置记录下来，再重新给原数组赋值
+
+
+
+##### 代码
+
+```java
+class Solution {
+    public void rotate(int[][] matrix) {
+        int n = matrix.length;
+        int[][] tmpMatrix = new int[n][n];
+        for(int i = 0;i < n;++i){
+            for(int j = 0;j < n;++j){
+                tmpMatrix[j][n - i - 1] = matrix[i][j]; 
+            }
+        }
+
+        for(int i = 0;i < n;++i){
+            for(int j = 0;j < n;++j){
+                matrix[i][j] = tmpMatrix[i][j];
+            }
+        }
+    }
+}
+```
+
+执行用时：0ms  内存消耗：41.3 MB
+
+
+
+由题可知，旋转后的各元素的位置为 `[j][n - i - 1]`  , 所以遍历整个数组 拿到值，按照旋转后的位置赋值，再通过循环将值重新赋给原数组
+
+
+
+#### TODO 原地旋转
