@@ -622,7 +622,7 @@ public static int[] partition(int[] arr,int L,int R){
 
 ## [119. 杨辉三角 II](https://leetcode.cn/problems/pascals-triangle-ii/)
 
-难度简单409收藏分享切换为英文接收动态反馈
+难度  简单
 
 给定一个非负索引 `rowIndex`，返回「杨辉三角」的第 `rowIndex` 行。
 
@@ -879,3 +879,174 @@ class Solution {
 
 
 #### TODO 原地旋转
+
+
+
+## [435. 无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
+
+难度  中等
+
+给定一个区间的集合 `intervals` ，其中 `intervals[i] = [starti, endi]` 。返回 *需要移除区间的最小数量，使剩余区间互不重叠* 。
+
+ 
+
+**示例 1:**
+
+```
+输入: intervals = [[1,2],[2,3],[3,4],[1,3]]
+输出: 1
+解释: 移除 [1,3] 后，剩下的区间没有重叠。
+```
+
+**示例 2:**
+
+```
+输入: intervals = [ [1,2], [1,2], [1,2] ]
+输出: 2
+解释: 你需要移除两个 [1,2] 来使剩下的区间没有重叠。
+```
+
+**示例 3:**
+
+```
+输入: intervals = [ [1,2], [2,3] ]
+输出: 0
+解释: 你不需要移除任何区间，因为它们已经是无重叠的了。
+```
+
+ 
+
+**提示:**
+
+- `1 <= intervals.length <= 105`
+- `intervals[i].length == 2`
+- `-5 * 104 <= starti < endi <= 5 * 104`
+
+
+
+### 题解
+
+---
+
+#### 动态规划
+
+##### 心路历程
+
+题目等价于 选出最多的区间，并且他们互不重叠，所以先按照端点的大小进行排序，然后使用 dp 去求区间的最大值
+
+
+
+
+
+##### 代码
+
+```java
+class Solution {
+    public int eraseOverlapIntervals(int[][] intervals) {
+        if(intervals.length == 0)   return 0;
+
+        Arrays.sort(intervals,(a,b) ->(a[1] - b[1]));
+
+        int n = intervals.length;
+        int[] f = new int[n];
+        Arrays.fill(f,1);
+        for (int i = 1; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (intervals[j][1] <= intervals[i][0]) {
+                    f[i] = Math.max(f[i], f[j] + 1);
+                }
+            }
+        }
+        return n - Arrays.stream(f).max().getAsInt();
+    }
+}
+```
+
+执行用时： 超时（数据量太大）时间复杂度 是 O(n ^ 2)
+
+
+
+转移状态方程为
+
+<img src="C:\Users\CSQ-PC\AppData\Roaming\Typora\typora-user-images\image-20220709172807693.png" alt="image-20220709172807693" style="zoom:50%;" />
+
+![image-20220709174337407](C:\Users\CSQ-PC\AppData\Roaming\Typora\typora-user-images\image-20220709174337407.png)
+
+#### 贪心
+
+##### 心路历程
+
+
+
+
+
+##### 代码
+
+```java
+class Solution {
+    public int eraseOverlapIntervals(int[][] intervals) {
+        if(intervals.length == 0)   return 0;
+
+        Arrays.sort(intervals,(a,b) ->(a[1] - b[1]));
+
+        int n = intervals.length;
+        int right = intervals[0][1];
+        int ans = 1;
+        for (int i = 1; i < n; ++i) {
+            if (intervals[i][0] >= right) {
+                ++ans;
+                right = intervals[i][1];
+            }
+        }
+        return n - ans;
+    }
+}
+```
+
+执行用时：47 ms  内存消耗：97.7 MB
+
+
+
+
+
+## [240. 搜索二维矩阵 II](https://leetcode.cn/problems/search-a-2d-matrix-ii/)
+
+难度中等
+
+编写一个高效的算法来搜索 `*m* x *n*` 矩阵 `matrix` 中的一个目标值 `target` 。该矩阵具有以下特性：
+
+- 每行的元素从左到右升序排列。
+- 每列的元素从上到下升序排列。
+
+ 
+
+**示例 1：**
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/11/25/searchgrid2.jpg)
+
+```
+输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5
+输出：true
+```
+
+**示例 2：**
+
+![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/11/25/searchgrid.jpg)
+
+```
+输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20
+输出：false
+```
+
+ 
+
+**提示：**
+
+- `m == matrix.length`
+- `n == matrix[i].length`
+- `1 <= n, m <= 300`
+- `-109 <= matrix[i][j] <= 109`
+- 每行的所有元素从左到右升序排列
+- 每列的所有元素从上到下升序排列
+- `-109 <= target <= 109`
+
