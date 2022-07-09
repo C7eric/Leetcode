@@ -1050,3 +1050,46 @@ class Solution {
 - 每列的所有元素从上到下升序排列
 - `-109 <= target <= 109`
 
+
+
+
+
+### 题解
+
+---
+
+#### Z 字搜索
+
+##### 心路历程
+
+由题，每行的元素都从左到右升序排列，每列的元素从上到下升序排列，故追求最少的次数确定最多的情况时，将起始点放在右上角，此时左边的元素小于 `matrix[x][y]` ,下面的元素大于 `matrix[x][y]` , `matrix[x][y]>target  ` 时，向左搜索，即 `y--` ,与之同理， `matrix[x][y] < target  ` 时，向下搜索，即 `x++ `，每次确定一行或一列。
+
+
+
+##### 代码
+
+```java
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int m = matrix.length,n = matrix[0].length;
+        int x = 0,y = n - 1;
+        while(x < m && y >= 0){
+            if(matrix[x][y] == target){
+                return true;  
+            } 
+            if(matrix[x][y] > target){
+                y--;
+            } else {
+                ++x;
+            }
+        } 
+        return false;
+    }
+}
+```
+
+执行用时： 5 ms  内存消耗： 47.5 MB
+
+
+
+注意 while 循环边界 `x < m && y >= 0 `
